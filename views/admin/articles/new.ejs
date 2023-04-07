@@ -1,0 +1,42 @@
+<%- include('../../partials/header.ejs') %>
+<body>
+    <%- include('../../partials/navbar.ejs') %>
+    
+<div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2>New Article</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/articles/save">
+                <input class="form-control" type="text" name="title" placeholder="Article title"><br>
+                <textarea class="form-control" placeholder="Escreva o artigo aqui." name="body" id="article"></textarea><br>
+                <label>Select the Category:</label>
+                <select name="category" class="form-control">
+                    <% categories.forEach((category) => { %>
+                        <option value="<%= category.id %>"><%= category.title %></option>
+                    <% }) %>
+                </select><br>
+                <button class="btn btn-success">Publish</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+<%- include('../../partials/footer.ejs') %>
+<!-- <script src="/tinymce/tinymce.min.js"></script> -->
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+      ],
+    });
+</script>
